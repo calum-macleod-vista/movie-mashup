@@ -1,3 +1,4 @@
+ <div>{{title$ | async}}</div>
  <div *ngIf="clues$ | async as clues">
     <div class="clue-list-container">
         <div *ngFor="let clue of clues$ | async">
@@ -12,7 +13,7 @@
                 <!-- Display image card here -->
                 <img [src]="clue.asset" alt="Image">
               </div>
-              <div *ngSwitchCase="'text'" [style.height]="clue?.cardHeight">
+              <div class="text-card" *ngSwitchCase="'text'" [style.height]="clue?.cardHeight">
                 <!-- Display text card here -->
                 {{clue.asset}}
               </div>

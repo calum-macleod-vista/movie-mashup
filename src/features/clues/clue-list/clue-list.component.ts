@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
   export class ClueListComponent implements OnInit {
     public clues$: Observable<Clue[]> | undefined;
-    public title$: Observable<Clue> | undefined;
+    public title$: Observable<string> | undefined;
     public hiddenClues$: Observable<Clue[]> | undefined;
     public hiddenListToggle = false;
     constructor(private clueManager: ClueManagerService) {}
@@ -36,6 +36,8 @@ import { MatButtonModule } from '@angular/material/button';
         ),
         this.clueManager.getActiveClues()
       );
+
+      this.title$ = this.clueManager.getSessionTitle();
 
       this.hiddenClues$ = combineLatest([
         this.clueManager.getSessionClues(),

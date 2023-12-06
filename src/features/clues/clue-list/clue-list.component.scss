@@ -10,12 +10,31 @@
 }
 
 .image-card {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 8px;
-    border-radius: 5px;
-    padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  margin: 8px;
+  border-radius: 5px;
+}
+
+.image-card img {
+  width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.text-card {
+  display: flex;
+  flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    overflow: hidden;
+    white-space: pre-wrap;
+  margin: 8px;
+  border-radius: 5px;
+  padding: 8px;
 }
 
 

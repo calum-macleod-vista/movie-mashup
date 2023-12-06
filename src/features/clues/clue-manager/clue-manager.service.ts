@@ -41,6 +41,13 @@ export class ClueManagerService {
       }))
   }
 
+  getSessionTitle(): Observable<string> {
+    return this.store.select<string>('title').pipe(
+        map((title) => {
+          return title
+      }))
+  }
+
   addActiveClue(key: string): void {
     this.store.dispatch({type: 'ADD_ACTIVE_CLUE', payload : key})
   }
