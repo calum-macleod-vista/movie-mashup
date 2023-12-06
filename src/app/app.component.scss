@@ -1,0 +1,42 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
+  
+  mm-clue-list {
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  mm-guesser {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+  }
+
+  mm-timer-countdown {
+    order: 1;
+  }
+
+  mm-clue-points {
+    order:2;
+  }
+
+  mm-info {
+    order: 3;
+  }
+  
+  mm-clue-purchase {
+    width: 60%;
+  }

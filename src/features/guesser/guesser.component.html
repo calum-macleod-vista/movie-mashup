@@ -1,0 +1,16 @@
+<form class="guesser-form">
+    <mat-form-field class="example-full-width" shouldLabelFloat="false">
+      <mat-label>Movie</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Movie"
+             matInput
+             [formControl]="guesserControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+          <mat-option [value]="option">{{option}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>

@@ -1,0 +1,8 @@
+<mat-form-field class="purchase-form">
+  <mat-label>Purchase Clue</mat-label>
+  <mat-select>
+    @for (clue of clues; track clue) {
+      <mat-option [value]="clue.value">{{clue.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

@@ -1,0 +1,25 @@
+.clue-list-container {
+  width: 100%;
+  text-align: center;
+}
+
+
+// .clue-list-container::before,
+// .clue-list-container::after {
+//   content: "";
+//   position: sticky;
+//   width: 100%;
+//   height: 20px; /* Adjust this value as needed */
+//   z-index: 1;
+//   pointer-events: none;
+// }
+
+// .clue-list-container::before {
+//   top: 0;
+//   background: linear-gradient(to bottom, white 0%, transparent 100%);
+// }
+
+// .clue-list-container::after {
+//   bottom: 0;
+//   background: linear-gradient(to top, white 0%, transparent 100%);
+// }
