@@ -1,17 +1,35 @@
 .clue-modal-list-item {
+        position: relative;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        background-color: lightgrey;
+        margin: 16px;
+        border-radius: 5px;
+        padding: 8px;
 }
 
-
-.used-class {
-    padding: 4px;
-    color: darkgray;
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: lightgrey;
+    margin: 8px;
+    border-radius: 5px;
+    padding: 8px;
 }
 
-.use-class {
+.top-right-button {
+    padding: 4px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 2px 5px 2px 2px;
+    border: none;
+}
+
+.clue-description {
     padding: 4px;
     color: white;
     background-color: lightblue;

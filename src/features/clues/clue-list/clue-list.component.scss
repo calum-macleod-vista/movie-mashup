@@ -4,6 +4,21 @@
 }
 
 
+.show-hidden-list-button {
+  width: 100%;
+  text-align: center;
+}
+
+.image-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+
 // .clue-list-container::before,
 // .clue-list-container::after {
 //   content: "";

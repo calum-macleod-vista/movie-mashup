@@ -8,13 +8,15 @@ interface State {
   activeClues: Clue[];
   mashupMovies: string[];
   points: number;
+  title: string;
 }
 
 const initialState: State = {
     sessionClues: [],
     activeClues: [],
     mashupMovies: [],
-    points: 1000
+    points: 1000,
+    title: ''
 };
 
 @Injectable({
@@ -40,20 +42,12 @@ export class Store {
 function reducer(state: State, action: Action): State {
   switch (action.type) {
   case 'SET_CLUES_FOR_SESSION':
-    console.log({
-      ...state,
-      sessionClues: action.payload
-    })
     return {
       ...state,
       sessionClues: action.payload,
       activeClues: action.payload.filter((clue: { key: string; }) => clue.key === 'synopsis')
     }
   case 'ADD_ACTIVE_CLUE':
-    console.log({
-      ...state,
-      activeClues: action.payload
-    })
     return {
       ...state,
       activeClues: [...state.activeClues, ...state.sessionClues.filter(clue => clue.key === action.payload)]
@@ -63,6 +57,17 @@ function reducer(state: State, action: Action): State {
       ...state,
       points: state.points - action.payload
     }
+    case 'SET_MOVIES_FOR_SESSION':
+    return {
+      ...state,
+      mashupMovies: action.payload
+    }
+    case 'SET_TITLE_FOR_SESSION':
+    return {
+      ...state,
+      title: action.payload
+    }
+
   default:
     return state;
   }

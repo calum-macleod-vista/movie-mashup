@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, filter, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '../../../core/store';
 
@@ -49,17 +49,26 @@ export class ClueManagerService {
     this.store.dispatch({type: 'SET_ACTIVE_CLUES', payload : clues})
   }
 
-  setCluesForNewSession(): Observable<Clue[]> {
-    return this.http.get<Clue[]>('/assets/clue-test.json').pipe(
-        tap(clues => this.store.dispatch({type: 'SET_CLUES_FOR_SESSION', payload: clues}))
-    );
+  setCluesForNewSession(): Observable<Movie> {
+    return this.http.get<Movie>('/assets/clue-test.json').pipe(
+        tap(movie => 
+          {
+            this.store.dispatch({type: 'SET_CLUES_FOR_SESSION', payload: movie.clues})
+            this.store.dispatch({type: 'SET_MOVIES_FOR_SESSION', payload: movie.movieMashups})
+            this.store.dispatch({type: 'SET_TITLE_FOR_SESSION', payload: movie.title})
+          }
+          ))
   }
 
   updatePoints(points: number): void {
     this.store.dispatch({type: 'UPDATE_POINTS', payload: points})
   }
 }
-
+export interface Movie {
+  clues: Clue[];
+  title: string;
+  movieMashups: string[];
+}
 export interface Clue {
     id: string;
     media: MediaType;
@@ -67,6 +76,7 @@ export interface Clue {
     key: string;
     points: number;
     description: string;
+    cardHeight: string;
 }
 
 export type MediaType = 'image' | 'text' | 'audio' | 'richtext';
