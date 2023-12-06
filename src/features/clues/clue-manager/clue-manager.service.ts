@@ -17,7 +17,10 @@ export class ClueManagerService {
   }
 
   getRemainingPoints(): Observable<number> {
-    return of(1000);
+    return this.store.select<number>('points').pipe(
+      map((points) => {
+        return points
+    }))
   }
 
   getClueIds(): Observable<string[]> {
@@ -31,14 +34,29 @@ export class ClueManagerService {
       }))
   }
 
+  getSessionClues(): Observable<Clue[]> {
+    return this.store.select<Clue[]>('sessionClues').pipe(
+        map((clues) => {
+          return clues
+      }))
+  }
+
+  addActiveClue(key: string): void {
+    this.store.dispatch({type: 'ADD_ACTIVE_CLUE', payload : key})
+  }
+
   setActiveClues(clues: Clue[]): void {
     this.store.dispatch({type: 'SET_ACTIVE_CLUES', payload : clues})
   }
 
-  getCluesForNewSession(): Observable<Clue[]> {
+  setCluesForNewSession(): Observable<Clue[]> {
     return this.http.get<Clue[]>('/assets/clue-test.json').pipe(
         tap(clues => this.store.dispatch({type: 'SET_CLUES_FOR_SESSION', payload: clues}))
     );
+  }
+
+  updatePoints(points: number): void {
+    this.store.dispatch({type: 'UPDATE_POINTS', payload: points})
   }
 }
 
@@ -47,6 +65,8 @@ export interface Clue {
     media: MediaType;
     asset: string;
     key: string;
+    points: number;
+    description: string;
 }
 
 export type MediaType = 'image' | 'text' | 'audio' | 'richtext';

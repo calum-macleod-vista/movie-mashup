@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClueManagerService } from '../clue-manager/clue-manager.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Component({
     selector: 'mm-clue-points',
@@ -14,10 +14,12 @@ import { Observable } from 'rxjs';
 })
   export class CluePointsComponent implements OnInit {
     
-    public remainingPoints: Observable<number> | undefined;
+    public remainingPoints$: Observable<number> | undefined;
     constructor(private clueManager: ClueManagerService) {}
   
     ngOnInit() {
-        this.remainingPoints = this.clueManager.getRemainingPoints();
+        this.remainingPoints$ = this.clueManager.getRemainingPoints().pipe(
+          map(points => {return points})
+        );
     }
   }

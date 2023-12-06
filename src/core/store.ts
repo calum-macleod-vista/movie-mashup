@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, pluck, scan } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Clue } from '../features/clues/clue-manager/clue-manager.service';
 
 interface State {
   sessionClues: Clue[];
   activeClues: Clue[];
+  mashupMovies: string[];
+  points: number;
 }
 
 const initialState: State = {
     sessionClues: [],
-    activeClues: []
+    activeClues: [],
+    mashupMovies: [],
+    points: 1000
 };
 
 @Injectable({
@@ -35,18 +39,32 @@ export class Store {
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'SET_CLUES_FOR_SESSION':
-        console.log({
-            ...state,
-            sessionClues: action.payload
-        })
-        return {
-            ...state,
-            sessionClues: action.payload,
-            activeClues: action.payload.filter((clue: { key: string; }) => clue.key === 'synopsis')
-        }
-    default:
-      return state;
+  case 'SET_CLUES_FOR_SESSION':
+    console.log({
+      ...state,
+      sessionClues: action.payload
+    })
+    return {
+      ...state,
+      sessionClues: action.payload,
+      activeClues: action.payload.filter((clue: { key: string; }) => clue.key === 'synopsis')
+    }
+  case 'ADD_ACTIVE_CLUE':
+    console.log({
+      ...state,
+      activeClues: action.payload
+    })
+    return {
+      ...state,
+      activeClues: [...state.activeClues, ...state.sessionClues.filter(clue => clue.key === action.payload)]
+    }
+    case 'UPDATE_POINTS':
+    return {
+      ...state,
+      points: state.points - action.payload
+    }
+  default:
+    return state;
   }
 }
 

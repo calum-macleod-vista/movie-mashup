@@ -1,0 +1,16 @@
+<div class="info-modal__wrapper">
+    <h2 mat-dialog-title>Get Hints</h2>
+    <mat-dialog-content >
+        <div *ngIf="clues$ | async as clues">
+            <div class="clue-list-container">
+                <div *ngFor="let clue of clues$ | async">
+                    <mm-info-modal-clue-list-item [clue]="clue"></mm-info-modal-clue-list-item>
+                    <mat-divider></mat-divider>
+                </div>
+                </div>
+                </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>
+</div>

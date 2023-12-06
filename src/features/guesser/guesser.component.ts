@@ -27,7 +27,7 @@ import {OptionsService} from './options/options.service';
     public guesserControl = new FormControl('');
     public options: string[] = ['Happy Gilmore', 'Persona', 'Paw Patrol'];
     public filteredOptions: Observable<string[]> | undefined;
-
+    public movies$: Observable<string[]> | undefined;
     constructor(private optionsService: OptionsService) {}
   
     ngOnInit() {
@@ -37,15 +37,33 @@ import {OptionsService} from './options/options.service';
             })
         )
     
-      this.filteredOptions = this.guesserControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value || '')),
-      );
+        this.filteredOptions = this.guesserControl.valueChanges.pipe(
+            startWith(''),
+            map(value => {
+              this.checkGuess();
+              return this._filter(value || '');
+            }),
+          );
+
+      this.movies$ = this.optionsService.getSessionMovies();
+
+      
     }
-  
+
+    checkGuess(): void {
+        this.movies$?.subscribe(stringList => {
+            if (stringList.includes(this.guesserControl.value ?? '')) {
+                console.log('Correct guess!');
+                // Implement logic for a correct guess here
+            } else {
+                console.log('Incorrect guess.');
+                // Implement logic for an incorrect guess here
+            }
+        });
+    }
+
     private _filter(value: string): string[] {
-      const filterValue = value.toLowerCase();
-  
-      return this.options.filter(option => option.toLowerCase().includes(filterValue));
+        const filterValue = value.toLowerCase();
+        return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
   }

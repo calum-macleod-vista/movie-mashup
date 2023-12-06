@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 @Component({
     selector: 'mm-info',
@@ -16,20 +17,10 @@ import { CommonModule } from '@angular/common';
     ]
 })
 export class InfoComponent {
-  constructor() {}
-  
-}
+  constructor(public dialog: MatDialog) {}
 
-// @Component({
-//   selector: 'app-info-dialog',
-//   template: `
-//     <h2 mat-dialog-title>Information</h2>
-//     <mat-dialog-content>
-//       <p>This is some information...</p>
-//     </mat-dialog-content>
-//     <mat-dialog-actions>
-//       <button mat-button mat-dialog-close>Close</button>
-//     </mat-dialog-actions>
-//   `,
-// })
-// export class InfoDialogComponent {}
+  
+  openModal(): void {
+    this.dialog.open(InfoModalComponent);
+  }
+}

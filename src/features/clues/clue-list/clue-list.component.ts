@@ -24,7 +24,7 @@ import { MediaType } from '../clue-manager/clue-manager.service';
   
     ngOnInit() {
       this.clues$ = concat(
-        this.clueManager.getCluesForNewSession().pipe(
+        this.clueManager.setCluesForNewSession().pipe(
           switchMap(() => this.clueManager.getActiveClues())
         ),
         this.clueManager.getActiveClues()

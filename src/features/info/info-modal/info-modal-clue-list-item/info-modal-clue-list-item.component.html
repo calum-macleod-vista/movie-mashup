@@ -1,0 +1,11 @@
+<div class="clue-modal-list-item">
+    <mat-icon>electric_scooter</mat-icon>
+    <div class="clue_description">
+    <div>{{clue?.description}}</div>
+    <div>{{clue?.points + "Points"}}</div>
+    </div>
+    <button 
+    [disabled]="(buttonText$ | async) === 'Used'" 
+    [ngClass]="(buttonText$ | async) === 'Used' ? 'used-class' : 'use-class'" 
+    (click)="clue && addThisClue(clue)">{{buttonText$ | async}}</button>
+</div>
