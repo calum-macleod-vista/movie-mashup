@@ -1,4 +1,4 @@
- <div>{{title$ | async}}</div>
+ <h3>{{title$ | async}}</h3>
  <div *ngIf="clues$ | async as clues">
     <div class="clue-list-container">
         <div *ngFor="let clue of clues$ | async">
@@ -30,6 +30,6 @@
               </div>
           </div>
         </div>
-          <button mat-flat-button color="primary" class="show-hidden-list-button" (click)="toggleHiddenList()">{{hiddenListToggle ? 'Hide list' : 'Use another clue'}}</button>
+          <button *ngIf="!hiddenListToggle" mat-flat-button color="primary" class="show-hidden-list-button" (click)="toggleHiddenList()">Use another clue</button>
     </div>
 </div>

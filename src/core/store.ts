@@ -2,21 +2,25 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Clue } from '../features/clues/clue-manager/clue-manager.service';
-
+import { MOVIES_LIST } from '../assets/movies-list';
 interface State {
   sessionClues: Clue[];
   activeClues: Clue[];
   mashupMovies: string[];
+  allMovies: string[];
   points: number;
   title: string;
+  correctGuesses: string[];
 }
 
 const initialState: State = {
     sessionClues: [],
     activeClues: [],
     mashupMovies: [],
+    allMovies: [...MOVIES_LIST],
     points: 1000,
-    title: ''
+    title: '',
+    correctGuesses: []
 };
 
 @Injectable({
@@ -45,7 +49,7 @@ function reducer(state: State, action: Action): State {
     return {
       ...state,
       sessionClues: action.payload,
-      activeClues: action.payload.filter((clue: { key: string; }) => clue.key === 'synopsis')
+      activeClues: action.payload.filter((clue: { key: string; }) => clue.key === 'poster')
     }
   case 'ADD_ACTIVE_CLUE':
     return {
@@ -66,6 +70,11 @@ function reducer(state: State, action: Action): State {
     return {
       ...state,
       title: action.payload
+    }
+    case 'SET_CORRECT_GUESS':
+    return {
+      ...state,
+      correctGuesses: [...state.correctGuesses.filter(guess => guess !== action.payload), action.payload]
     }
 
   default:

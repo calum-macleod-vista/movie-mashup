@@ -1,0 +1,2 @@
+<ng-particles *ngIf="correctGuessCount$ | async" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<ng-particles *ngIf="nillPoints$ | async" [options]="particlesOptions2" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>

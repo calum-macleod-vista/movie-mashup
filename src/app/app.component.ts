@@ -7,13 +7,14 @@ import { CluePurchaseComponent } from '../features/clues/clue-purchase/clue-purc
 import { CluePointsComponent } from '../features/clues/clue-points/clue-points.component';
 import { TimerComponent } from '../features/timer/timer-component';
 import { InfoComponent } from '../features/info/info.component';
+import { AnimationsComponent } from '../features/animations/animations.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CommonModule, RouterOutlet, GuesserComponent, ClueListComponent, CluePurchaseComponent, CluePointsComponent, TimerComponent, InfoComponent]
+    imports: [CommonModule, RouterOutlet, GuesserComponent, ClueListComponent, CluePurchaseComponent, CluePointsComponent, TimerComponent, InfoComponent, AnimationsComponent]
 })
 export class AppComponent {
   title = 'movie-mashups';

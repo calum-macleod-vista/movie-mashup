@@ -34,6 +34,14 @@ export class ClueManagerService {
       }))
   }
 
+  getCorrectGuesses(): Observable<string[]> {
+    return this.store.select<string[]>('correctGuesses').pipe(
+        map((clues) => {
+          console.log(clues)
+          return clues
+      }))
+  }
+
   getSessionClues(): Observable<Clue[]> {
     return this.store.select<Clue[]>('sessionClues').pipe(
         map((clues) => {
@@ -56,8 +64,12 @@ export class ClueManagerService {
     this.store.dispatch({type: 'SET_ACTIVE_CLUES', payload : clues})
   }
 
+  setCorrectGuesses(guess: string): void {
+    this.store.dispatch({type: 'SET_CORRECT_GUESS', payload : guess})
+  }
+
   setCluesForNewSession(): Observable<Movie> {
-    return this.http.get<Movie>('/assets/clue-test.json').pipe(
+    return this.http.get<Movie>('/assets/clue-test-2.json').pipe(
         tap(movie => 
           {
             this.store.dispatch({type: 'SET_CLUES_FOR_SESSION', payload: movie.clues})

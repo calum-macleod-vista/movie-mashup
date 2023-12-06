@@ -7,7 +7,6 @@ import { Store } from '../../../core/store';
 })
 export class OptionsService {
   constructor(private store: Store) {}
-  options: string[] = ['Option 1', 'Option 2', 'Option 3'];
 
   getSessionMovies(): Observable<string[]> {
     return this.store.select<string[]>('mashupMovies').pipe(
@@ -16,6 +15,10 @@ export class OptionsService {
       }))
   }
   getOptions(): Observable<string[]> {
-    return of(this.options);
+    return this.store.select<string[]>('allMovies').pipe(
+      map((movies) => {
+        console.log(movies)
+        return movies
+    }))
   }
 }

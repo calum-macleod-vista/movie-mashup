@@ -1,6 +1,6 @@
 
 {
-  "mashupMovies": [],
+  "movieMashups": ["Rocky", "Beauty and the Beast", "Cinderella"],
   "title": "Tiger Rose Unbound",
   "clues" : [
     {
@@ -19,7 +19,7 @@
       "key": "synopsis",
       "points": 100,
       "description": "Tap to reveal plot summary",
-      "cardHeight": "260px"
+      "cardHeight": "320px"
     },
     {
       "id": "f6g7h8i9j0",
