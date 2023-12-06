@@ -6,7 +6,6 @@ import { Clue } from '../features/clues/clue-manager/clue-manager.service';
 interface State {
   sessionClues: Clue[];
   activeClues: Clue[];
-
 }
 
 const initialState: State = {
@@ -29,9 +28,7 @@ export class Store {
 
   select<T>(name: keyof State): Observable<T> {
     console.log("select" + name)
-    this.state$.pipe(map(
-        state => console.log(state[name])
-    ))
+    
     return this.state$.pipe(map(state => state[name] as T));
 }
 }
@@ -45,7 +42,8 @@ function reducer(state: State, action: Action): State {
         })
         return {
             ...state,
-            sessionClues: action.payload
+            sessionClues: action.payload,
+            activeClues: action.payload.filter((clue: { key: string; }) => clue.key === 'synopsis')
         }
     default:
       return state;
