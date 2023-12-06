@@ -1,3 +1,22 @@
-<div class="clue-list-container" *ngFor="let number of numbers">
-    <mm-clue-list-item >{{number}}</mm-clue-list-item>
+<div *ngIf="clues$ | async as clues">
+    <div class="clue-list-container">
+        <div *ngFor="let clue of clues$ | async">
+            <ng-container [ngSwitch]="clue.media">
+              <div *ngSwitchCase="'audio'">
+                <!-- Display audio card here -->
+                <audio controls>
+                  <source [src]="clue.asset" type="audio/mpeg">
+                </audio>
+              </div>
+              <div *ngSwitchCase="'image'">
+                <!-- Display image card here -->
+                <img [src]="clue.asset" alt="Image">
+              </div>
+              <div *ngSwitchCase="'text'">
+                <!-- Display text card here -->
+                {{clue.asset}}
+              </div>
+            </ng-container>
+          </div>
+    </div>
 </div>

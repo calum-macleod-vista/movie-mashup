@@ -26,12 +26,17 @@ export class ClueManagerService {
   getAllClues(): Observable<Clue[]> {
     return this.http.get<Clue[]>('./clue-test.json');
   }
+
+  getCluesForNewSession(): Observable<Clue[]> {
+    return this.http.get<Clue[]>('/assets/clue-test.json');
+  }
 }
 
 export interface Clue {
     id: string;
     media: MediaType;
     asset: string;
+    key: string;
 }
 
 export type MediaType = 'image' | 'text' | 'audio' | 'richtext';

@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { Clue } from '../../clue-manager/clue-manager.service';
 
 @Component({
     selector: 'mm-clue-list-item',
@@ -10,6 +11,9 @@ import {Component, OnInit} from '@angular/core';
   })
   export class ClueListItemComponent implements OnInit {
 
+    @Input()
+    public clue: Clue | undefined;
+    
     constructor() {}
   
     ngOnInit() {
