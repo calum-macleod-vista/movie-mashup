@@ -24,8 +24,13 @@
     object-fit: contain;
 }
 
+h3 {
+  text-align: center;
+}
+
 .text-card {
   display: flex;
+  font-size: 14px;
   flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;

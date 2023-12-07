@@ -17,7 +17,7 @@
         "media": "text",
         "asset": "\"Echoes of Prehistoric Crescendo\" is an exhilarating genre fusion that strides the boundary of fantasy and psychological thriller, presenting a mesmerizing world where genetically revived dinosaurs roam amidst the melodic quest for artistic brilliance. Audiences will be captivated by the journey of a virtuosic musician who, plagued by amnesia, must decipher his past through an intricate tapestry of tattoos and Polaroid clues, all while navigating the treacherous crescendo of a dinosaur theme park sliding into chaos. This film promises a stunning orchestration of suspense and revelation, where the pursuit of excellence meets the primal instinct for survival, in a narrative that reverberates with the echoes of an ancient past colliding with the symphonic pressures of modern ambition.",
         "key": "synopsis",
-        "points": 100,
+        "points": 300,
         "description": "Tap to reveal plot summary",
         "cardHeight": "320px"
       },
@@ -26,7 +26,7 @@
         "media": "image",
         "asset": "assets/images/portrait3.jpg",
         "key": "portrait",
-        "points": 100,
+        "points": 300,
         "description": "Tap to reveal character portrait",
         "cardHeight": "300px"
       },

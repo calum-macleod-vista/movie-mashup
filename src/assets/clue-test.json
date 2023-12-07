@@ -17,7 +17,7 @@
       "media": "text",
       "asset": "Step into the gritty heart of Philadelphia for \"Tiger Rose Unbound,\" where Tommy \"The Tiger\" Conlon, a hard-luck boxer, must punch beyond the ropes of his sport to break a cryptic curse tied to an enchanted rose granting him temporary greatness at a dire cost. Embrace an electrifying and soulful journey as Tommy, propelled by heart-thumping musical numbers, seeks to reclaim his essence on the iconic steps of his city, rallying its people in a cinematic anthem of identity and redemption. Witness a poignant tale of courage as \"Tiger Rose Unbound\" weaves a magical and action-packed narrative, where a man’s fight for his soul becomes a spectacle of inspiration, leaving audiences cheering for the triumph of the human spirit.",
       "key": "synopsis",
-      "points": 100,
+      "points": 300,
       "description": "Tap to reveal plot summary",
       "cardHeight": "320px"
     },
@@ -26,7 +26,7 @@
       "media": "image",
       "asset": "assets/images/portrait1.jpg",
       "key": "portrait",
-      "points": 100,
+      "points": 300,
       "description": "Tap to reveal character portrait",
       "cardHeight": "300px"
     },
