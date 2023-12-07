@@ -69,7 +69,7 @@ export class ClueManagerService {
   }
 
   setCluesForNewSession(): Observable<Movie> {
-    return this.http.get<Movie>('/assets/clue-test.json').pipe(
+    return this.http.get<Movie>('/assets/clue-test-3.json').pipe(
         tap(movie => 
           {
             this.store.dispatch({type: 'SET_CLUES_FOR_SESSION', payload: movie.clues})
