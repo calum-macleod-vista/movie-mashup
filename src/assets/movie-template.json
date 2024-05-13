@@ -1,0 +1,49 @@
+{
+    "clues" : [
+      {
+        "id": "3b6c34f9a0",
+        "media": "image",
+        "asset": "assets/images/poster__.webp",
+        "key": "poster",
+        "points": 300,
+        "description": "Tap to reveal movie poster",
+        "cardHeight": "300px"
+      },
+      {
+        "id": "a1b2c3d4e5",
+        "media": "text",
+        "asset": "",
+        "key": "synopsis",
+        "points": 300,
+        "description": "Tap to reveal plot summary",
+        "cardHeight": "320px"
+      },
+      {
+        "id": "a1b2c3d4e5",
+        "media": "text",
+        "asset": "",
+        "key": "tagline",
+        "points": 200,
+        "description": "Tap to reveal marketing tagline",
+        "cardHeight": "100px"
+      },
+      {
+        "id": "f6g7h8i9j0",
+        "media": "image",
+        "asset": "assets/images/portrait__.webp",
+        "key": "portrait",
+        "points": 300,
+        "description": "Tap to reveal character portrait",
+        "cardHeight": "300px"
+      },
+      {
+        "id": "0j9i8h7g6f",
+        "media": "audio",
+        "asset": "assets/images/trailer__.wav",
+        "key": "trailerAudio",
+        "points": 200,
+        "description": "Tap to reveal trailer audio",
+        "cardHeight": "50px"
+      }
+    ]
+  }

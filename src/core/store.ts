@@ -11,6 +11,7 @@ interface State {
   points: number;
   title: string;
   correctGuesses: string[];
+  giveUp: boolean;
 }
 
 const initialState: State = {
@@ -18,9 +19,10 @@ const initialState: State = {
     activeClues: [],
     mashupMovies: [],
     allMovies: [...MOVIES_LIST],
-    points: 1000,
+    points: 1001,
     title: '',
-    correctGuesses: []
+    correctGuesses: [],
+    giveUp: false
 };
 
 @Injectable({
@@ -75,6 +77,17 @@ function reducer(state: State, action: Action): State {
     return {
       ...state,
       correctGuesses: [...state.correctGuesses.filter(guess => guess !== action.payload), action.payload]
+    }
+    case 'RESET_POINTS':
+    return {
+      ...state,
+      points: 1001,
+      giveUp: false
+    }
+    case 'GIVE_UP':
+    return {
+      ...state,
+      giveUp: true
     }
 
   default:

@@ -4,7 +4,6 @@ import { Clue } from '../../clue-manager/clue-manager.service';
 @Component({
     selector: 'mm-clue-list-item',
     templateUrl: 'clue-list-item.component.html',
-    styleUrls: ['clue-list-item.component.scss'],
     standalone: true,
     imports: [
     ],

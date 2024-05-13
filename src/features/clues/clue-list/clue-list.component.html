@@ -23,9 +23,14 @@
           <div *ngIf="hiddenClues$ | async as clues">
               <div class="clue-list-container">
                 <div *ngFor="let clue of hiddenClues$ | async">
-                  <div *ngIf="clue.key !='title'">
+                  <div>
                     <mm-info-modal-clue-list-item [clue]="clue"></mm-info-modal-clue-list-item>
                   </div>
+                </div>
+                <div>
+                  <button mat-flat-button color="primary" (click)="giveUp()">I Give Up</button>
+                  <div *ngIf="(giveUp$ | async)">Mashed-up movies:<div>{{answers$ | async}}</div></div>
+                  <button mat-flat-button color="accent" class="give-up-button" (click)="newGame()">New Game</button>
                 </div>
               </div>
           </div>

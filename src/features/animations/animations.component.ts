@@ -10,7 +10,6 @@ import {AsyncPipe, CommonModule} from '@angular/common';
 @Component({
     selector: 'mm-animations',
     templateUrl: 'animations.component.html',
-    styleUrls: ['animations.component.scss'],
     standalone: true,
     imports: [
         NgParticlesModule, CommonModule
@@ -140,7 +139,7 @@ import {AsyncPipe, CommonModule} from '@angular/common';
 
         this.nillPoints$ = this.clueManagerService.getRemainingPoints().pipe(
             map((points) => {
-              return points === 0;
+              return points <= 0;
           })
         )
     }

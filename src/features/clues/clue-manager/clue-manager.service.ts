@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, filter, map, of, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '../../../core/store';
 
@@ -20,6 +20,13 @@ export class ClueManagerService {
     return this.store.select<number>('points').pipe(
       map((points) => {
         return points
+    }))
+  }
+
+  getGiveUp(): Observable<boolean> {
+    return this.store.select<boolean>('giveUp').pipe(
+      map((giveUp) => {
+        return giveUp
     }))
   }
 
@@ -69,24 +76,81 @@ export class ClueManagerService {
   }
 
   setCluesForNewSession(): Observable<Movie> {
-    return this.http.get<Movie>('/assets/clue-test-3.json').pipe(
-        tap(movie => 
-          {
-            this.store.dispatch({type: 'SET_CLUES_FOR_SESSION', payload: movie.clues})
-            this.store.dispatch({type: 'SET_MOVIES_FOR_SESSION', payload: movie.movieMashups})
-            this.store.dispatch({type: 'SET_TITLE_FOR_SESSION', payload: movie.title})
-          }
-          ))
+    const seed = this.getRandomInt(1,90);
+    return this.http.get<Movie[]>('/assets/movies.json').pipe(
+      switchMap(movies => {
+        const movie = movies.find(m => m.id === seed);
+        if (movie) {
+          return this.http.get<MovieTemplate>('/assets/movie-template.json').pipe(
+            map(template => {
+              const movieMashups = movie.films.split('|');
+  
+              const clues = template.clues.map(clue => {
+                let asset;
+                if (clue.key === 'synopsis') {
+                  asset = movie.pitch; 
+                } else if (clue.key === 'tagline') {
+                  asset = movie.tagline; 
+                } else {
+                  asset = clue.asset.replace('__', movie.id.toString());
+                }
+                return {
+                  ...clue,
+                  asset: asset
+                };
+              });
+  
+              this.store.dispatch({ type: 'SET_CLUES_FOR_SESSION', payload: clues });
+              this.store.dispatch({ type: 'SET_MOVIES_FOR_SESSION', payload: movieMashups });
+              this.store.dispatch({ type: 'SET_TITLE_FOR_SESSION', payload: movie.title });
+  
+              return movie;
+            })
+          );
+        } else {
+          // Movie not found, retry
+          return this.setCluesForNewSession();
+        }
+      }
+    ));
+  }
+
+  getAnswers(): Observable<string> {
+    return this.store.select<string[]>('mashupMovies').pipe(
+      map((mashupMovies) => {
+        return mashupMovies.join(', ');
+    }))
   }
 
   updatePoints(points: number): void {
     this.store.dispatch({type: 'UPDATE_POINTS', payload: points})
   }
+
+  resetPoints(): void {
+    this.store.dispatch({type: 'RESET_POINTS'})
+  }
+
+  resetGame (): void {
+    this.setCluesForNewSession();
+    this.store.dispatch({type: 'RESET'})
+  }
+  giveUp (): void {
+    this.store.dispatch({type: 'GIVE_UP'})
+  }
+
+  getRandomInt(min: number, max: number): number {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 }
 export interface Movie {
+  id: number;
   clues: Clue[];
   title: string;
-  movieMashups: string[];
+  films: string;
+  pitch: string;
+  tagline: string;
 }
 export interface Clue {
     id: string;
@@ -96,6 +160,9 @@ export interface Clue {
     points: number;
     description: string;
     cardHeight: string;
+}
+export interface MovieTemplate {
+  clues: Clue[];
 }
 
 export type MediaType = 'image' | 'text' | 'audio' | 'richtext';
