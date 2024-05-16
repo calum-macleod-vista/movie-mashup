@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {first, map, startWith, take} from 'rxjs/operators';
-import {AsyncPipe} from '@angular/common';
+import {AsyncPipe, CommonModule} from '@angular/common';
 import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,6 +23,7 @@ import { ClueManagerService } from '../clues/clue-manager/clue-manager.service';
       MatAutocompleteModule,
       ReactiveFormsModule,
       AsyncPipe,
+      CommonModule
     ],
   })
   export class GuesserComponent implements OnInit {
@@ -31,6 +32,7 @@ import { ClueManagerService } from '../clues/clue-manager/clue-manager.service';
     public filteredOptions: Observable<string[]> | undefined;
     public movies$: Observable<string[]> | undefined;
     public correctGuessCount$: Observable<number> | undefined;
+    public guessedMovies$: Observable<string[]> | undefined;
     constructor(private optionsService: OptionsService, private clueManagerService: ClueManagerService) {}
   
     ngOnInit() {
@@ -49,6 +51,8 @@ import { ClueManagerService } from '../clues/clue-manager/clue-manager.service';
           return guesses.length
       })
       );
+
+      this.guessedMovies$ = this.clueManagerService.getCorrectGuesses();
     }
     onOptionSelected(event: MatAutocompleteSelectedEvent): void {
       this.checkGuess(event.option.value); // replace with your function

@@ -33,7 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
     }
 
     public giveUp() {
-      this.clueManager.updatePoints(1002);
+      this.clueManager.resetPoints();
       this.clueManager.giveUp();
       this.giveUpToggle = true;
     }

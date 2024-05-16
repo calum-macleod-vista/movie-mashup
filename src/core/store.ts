@@ -82,6 +82,7 @@ function reducer(state: State, action: Action): State {
     return {
       ...state,
       points: 1501,
+      correctGuesses: [],
       giveUp: false
     }
     case 'GIVE_UP':
