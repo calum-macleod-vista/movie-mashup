@@ -7,7 +7,7 @@
         "key": "poster",
         "points": 300,
         "description": "Tap to reveal movie poster",
-        "cardHeight": "300px"
+        "cardHeight": "100%"
       },
       {
         "id": "a1b2c3d4e5",
@@ -16,7 +16,7 @@
         "key": "synopsis",
         "points": 300,
         "description": "Tap to reveal plot summary",
-        "cardHeight": "320px"
+        "cardHeight": "100%"
       },
       {
         "id": "a1b2c3d4e5",
@@ -25,7 +25,7 @@
         "key": "tagline",
         "points": 200,
         "description": "Tap to reveal marketing tagline",
-        "cardHeight": "100px"
+        "cardHeight": "100%"
       },
       {
         "id": "f6g7h8i9j0",
@@ -34,7 +34,7 @@
         "key": "portrait",
         "points": 300,
         "description": "Tap to reveal character portrait",
-        "cardHeight": "300px"
+        "cardHeight": "100%"
       },
       {
         "id": "0j9i8h7g6f",

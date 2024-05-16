@@ -19,7 +19,7 @@ const initialState: State = {
     activeClues: [],
     mashupMovies: [],
     allMovies: [...MOVIES_LIST],
-    points: 1001,
+    points: 1501,
     title: '',
     correctGuesses: [],
     giveUp: false
@@ -81,7 +81,7 @@ function reducer(state: State, action: Action): State {
     case 'RESET_POINTS':
     return {
       ...state,
-      points: 1001,
+      points: 1501,
       giveUp: false
     }
     case 'GIVE_UP':
